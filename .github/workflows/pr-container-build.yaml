@@ -105,4 +105,4 @@ jobs:
         with:
           context: build-context
           file: build-context/Containerfile
-          push: false
+          push: true
