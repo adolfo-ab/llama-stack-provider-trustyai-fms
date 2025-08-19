@@ -8,11 +8,10 @@ env:
   REGISTRY: quay.io
   IMAGE_NAME: trustyai_testing/llama-stack-trustyai-fms
 
-# just testing
+# just testing testing
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    environment: pr-review
     permissions:
       contents: read
       packages: write
