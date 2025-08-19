@@ -1,7 +1,7 @@
 name: Build PR LLS Distro Container Image
 
 on:
-  pull_request:
+  pull_request_target:
     branches: [ main ]
 
 env:
@@ -11,6 +11,7 @@ env:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    environment: pr-review
     permissions:
       contents: read
       packages: write
@@ -18,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Log in to Container Registry
         uses: docker/login-action@184bdaa0721073962dff0199f1fb9940f07167d1
@@ -83,7 +86,7 @@ jobs:
           
           ENTRYPOINT ["python", "-m", "llama_stack.distribution.server.server", "--config", "/opt/app-root/run.yaml"]
           EOF
-          
+
       - name: Create modified provider config
         run: |
           mkdir -p build-context/providers.d/remote/safety
@@ -95,7 +98,7 @@ jobs:
           api_dependencies: ["safety"]
           optional_api_dependencies: ["shields"]
           EOF
-          
+
       - name: Build Docker image
         uses: docker/build-push-action@55146d969b0dff1a5c12630229609757af5b1081
         with:
