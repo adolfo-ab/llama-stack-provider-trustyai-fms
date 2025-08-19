@@ -36,7 +36,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,prefix={{branch}}-,format=short
+            type=ref,event=pr,prefix=pr-
+            type=sha,format=short
 
       - name: Create temporary build directory
         run: |
