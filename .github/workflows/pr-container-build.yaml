@@ -8,7 +8,7 @@ env:
   REGISTRY: quay.io
   IMAGE_NAME: aaguirre/llama-stack-trustyai-fms
 
-# just testing testing testing testing testing
+# just testing testing testing testing testing testing
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
