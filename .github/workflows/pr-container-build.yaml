@@ -2,12 +2,13 @@ name: Build PR LLS Distro Container Image
 
 on:
   pull_request_target:
-    branches: [ main ]
+    branches: [ main, test-main ]
 
 env:
   REGISTRY: quay.io
   IMAGE_NAME: trustyai_testing/llama-stack-trustyai-fms
 
+# just testing
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
