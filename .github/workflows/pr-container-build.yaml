@@ -2,7 +2,7 @@ name: Build PR LLS Distro Container Image
 
 on:
   pull_request_target:
-    branches: [ main ]
+    branches: [ main, test-main ]
 
 env:
   REGISTRY: quay.io
