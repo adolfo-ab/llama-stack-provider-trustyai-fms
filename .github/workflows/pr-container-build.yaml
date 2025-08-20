@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: quay.io
-  ORG: trustyai_testing
+  ORG: aaguirre
   IMAGE_NAME: llama-stack-trustyai-fms
 
 jobs:
@@ -32,9 +32,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY }}/${{ env.ORG }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,prefix={{branch}}-,format=short
+            type=ref,event=pr,prefix=pr-
+            type=sha,format=short
 
       - name: Create temporary build directory
         run: |
